@@ -121,9 +121,9 @@ def train_one_epoch(
         if "class_error" in loss_dict_reduced:
             metric_logger.update(class_error=loss_dict_reduced["class_error"])
 
-        lr_rt = optimizer.param_groups[0]["lr"]
+        lr_rf = optimizer.param_groups[0]["lr"]
         metric_logger.update(lr=lr_rf)
-        wandb.log({"Learning_Rate": lr_rt})
+        wandb.log({"Learning_Rate": lr_rf})
         _cnt += 1
         if args.debug:
             if _cnt % 15 == 0:
