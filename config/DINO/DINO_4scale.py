@@ -1,15 +1,20 @@
-_base_ = ['coco_transformer.py']
+from dotenv import load_dotenv
+import os
 
-num_classes=91
+load_dotenv()
+
+_base_ = ["coco_transformer.py"]
+
+num_classes = 91
 
 lr = 0.0001
-param_dict_type = 'default'
+param_dict_type = "default"
 lr_backbone = 1e-05
-lr_backbone_names = ['backbone.0']
-lr_linear_proj_names = ['reference_points', 'sampling_offsets']
+lr_backbone_names = ["backbone.0"]
+lr_linear_proj_names = ["reference_points", "sampling_offsets"]
 lr_linear_proj_mult = 0.1
 ddetr_lr_param = False
-batch_size = 2
+batch_size = os.getenv("BATCH_SIZE")
 weight_decay = 0.0001
 epochs = 12
 lr_drop = 11
@@ -20,13 +25,13 @@ multi_step_lr = False
 lr_drop_list = [33, 45]
 
 
-modelname = 'dino'
+modelname = "dino"
 frozen_weights = None
-backbone = 'resnet50'
+backbone = "resnet50"
 use_checkpoint = False
 
 dilation = False
-position_embedding = 'sine'
+position_embedding = "sine"
 pe_temperatureH = 20
 pe_temperatureW = 20
 return_interm_indices = [1, 2, 3]
@@ -50,7 +55,7 @@ dabdetr_yolo_like_anchor_update = False
 dabdetr_deformable_encoder = False
 dabdetr_deformable_decoder = False
 use_deformable_box_attn = False
-box_attn_type = 'roi_align'
+box_attn_type = "roi_align"
 dec_layer_number = None
 num_feature_levels = 4
 enc_n_points = 4
@@ -60,7 +65,7 @@ dln_xy_noise = 0.2
 dln_hw_noise = 0.2
 add_channel_attention = False
 add_pos_value = False
-two_stage_type = 'standard'
+two_stage_type = "standard"
 two_stage_pat_embed = 0
 two_stage_add_query_num = 0
 two_stage_bbox_embed_share = False
@@ -69,8 +74,8 @@ two_stage_learn_wh = False
 two_stage_default_hw = 0.05
 two_stage_keep_all_tokens = False
 num_select = 300
-transformer_activation = 'relu'
-batch_norm_type = 'FrozenBatchNorm2d'
+transformer_activation = "relu"
+batch_norm_type = "FrozenBatchNorm2d"
 masks = False
 aux_loss = True
 set_cost_class = 2.0
@@ -86,9 +91,9 @@ interm_loss_coef = 1.0
 no_interm_box_loss = False
 focal_alpha = 0.25
 
-decoder_sa_type = 'sa' # ['sa', 'ca_label', 'ca_content']
-matcher_type = 'HungarianMatcher' # or SimpleMinsumMatcher
-decoder_module_seq = ['sa', 'ca', 'ffn']
+decoder_sa_type = "sa"  # ['sa', 'ca_label', 'ca_content']
+matcher_type = "HungarianMatcher"  # or SimpleMinsumMatcher
+decoder_module_seq = ["sa", "ca", "ffn"]
 nms_iou_threshold = -1
 
 dec_pred_bbox_embed_share = True
@@ -110,4 +115,3 @@ ema_decay = 0.9997
 ema_epoch = 0
 
 use_detached_boxes_dec_out = False
-
