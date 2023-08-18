@@ -1,8 +1,3 @@
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
 _base_ = ["coco_transformer.py"]
 
 num_classes = 91
@@ -14,7 +9,7 @@ lr_backbone_names = ["backbone.0"]
 lr_linear_proj_names = ["reference_points", "sampling_offsets"]
 lr_linear_proj_mult = 0.1
 ddetr_lr_param = False
-batch_size = os.getenv("BATCH_SIZE")
+batch_size = 2
 weight_decay = 0.0001
 epochs = 12
 lr_drop = 11
