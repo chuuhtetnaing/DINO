@@ -9,3 +9,5 @@ termcolor
 addict
 yapf
 timm
+wandb
+python-dotenv
